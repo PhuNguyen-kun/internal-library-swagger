@@ -1,0 +1,135 @@
+post:
+    tags:
+        - user
+    summary: Add book to wishlist
+    description: Add a book to the current user's wishlist
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema:
+              type: integer
+              example: 5
+          description: ID of the book to add to wishlist
+    responses:
+        "201":
+            description: Successfully added book to wishlist
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            status:
+                                type: string
+                                example: success
+                            message:
+                                type: string
+                                example: "Sách đã được thêm vào danh sách yêu thích."
+                            code:
+                                type: integer
+                                example: 201
+        "400":
+            description: Bad Request
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Sách đã tồn tại trong danh sách yêu thích."
+        "401":
+            description: Unauthorized - User is not authenticated
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Unauthorized"
+        "404":
+            description: Book not found
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Book not found"
+        "500":
+            description: Server error
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Internal Server Error"
+
+delete:
+    tags:
+        - user
+    summary: Remove book from wishlist
+    description: Remove a book from the current user's wishlist
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema:
+              type: integer
+              example: 5
+          description: ID of the book to remove from wishlist
+    responses:
+        "204":
+            description: Book successfully removed from wishlist (No Content)
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            status:
+                                type: string
+                                example: success
+                            message:
+                                type: string
+                                example: "Sách đã được xóa khỏi danh sách yêu thích."
+                            code:
+                                type: integer
+                                example: 204
+        "401":
+            description: Unauthorized - User is not authenticated
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Unauthorized"
+        "404":
+            description: Book not found in wishlist
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Book not found in wishlist"
+        "500":
+            description: Server error
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Internal Server Error"

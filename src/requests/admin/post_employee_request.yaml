@@ -1,0 +1,14 @@
+type: object
+properties:
+  employee_code:
+    type: string
+    description: Employee code of the employee
+    example: "K1234"
+  full_name:
+    type: string
+    description: Full name of the employee
+    example: "Example Employee"
+  email:
+    type: string
+    description: Email of the employee
+    example: "example@kiaisoft.com"

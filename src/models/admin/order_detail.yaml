@@ -1,0 +1,32 @@
+type: object
+properties:
+    id:
+        type: integer
+        description: ID of the order detail
+        example: 1
+    title:
+        type: string
+        description: Title of the book
+        example: "Tôi tài giỏi bạn cũng thế"
+    image_url:
+        type: string
+        description: Image URL of the book
+        example: "http://localhost:8080/storage/images/G9YTywHSiXX7K6QCTASlHdqv4bKNoSUZYYzGm2A9.jpg"
+    return_date_due:
+        type: string
+        format: date
+        description: Due date of the book
+        example: "2025-04-30"
+    return_date_real:
+        type: string
+        format: date
+        description: Real return date of the book
+        example: null
+    status:
+        type: string
+        description: Status of the book (0 Pending 1 Approved 2 Rejected)
+        example: "Đang mượn"
+    quantity:
+        type: integer
+        description: Quantity of the book
+        example: 1

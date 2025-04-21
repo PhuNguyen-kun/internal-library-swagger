@@ -1,0 +1,78 @@
+type: object
+properties:
+    id:
+        type: integer
+        description: ID of the cart item
+        example: 1
+    user:
+        type: object
+        properties:
+            id:
+                type: integer
+                description: ID of the user
+                example: 1
+            full_name:
+                type: string
+                description: Full name of the user
+                example: "John Doe"
+            email:
+                type: string
+                description: Email of the user
+                example: "john.doe@example.com"
+    book:
+        type: object
+        properties:
+            id:
+                type: integer
+                description: ID of the book
+                example: 1
+            slug:
+                type: string
+                description: Slug of the book
+                example: "toi-tai-gioi-ban-cung-the"
+            title:
+                type: string
+                description: Title of the book
+                example: "Tôi tài giỏi bạn cũng thế"
+            author:
+                type: string
+                description: Author of the book
+                example: "Adam Khoo"
+            stock_quantity:
+                type: integer
+                description: Available stock quantity
+                example: 10
+            page:
+                type: integer
+                description: Number of pages
+                example: 250
+            short_description:
+                type: string
+                description: Short description of the book
+                example: "Cuốn sách giúp bạn phát triển bản thân"
+            description:
+                type: string
+                description: Full description of the book
+                example: "Tôi tài giỏi, bạn cũng thế là cuốn sách..."
+            image_url:
+                type: string
+                description: URL to the book cover image
+                example: "http://localhost:8080/storage/images/G9YTywHSiXX7K6QCTASlHdqv4bKNoSUZYYzGm2A9.jpg"
+            favorite_count:
+                type: integer
+                description: Number of users who favorited this book
+                example: 42
+            average_star:
+                type: number
+                format: float
+                description: Average rating of the book
+                example: 4.5
+    quantity:
+        type: integer
+        description: Quantity of books in cart
+        example: 2
+    return_date_due:
+        type: string
+        format: date
+        description: Due date for returning the book
+        example: "2025-05-18"

@@ -1,0 +1,59 @@
+type: object
+properties:
+    title:
+        type: string
+        description: Title of the book
+        example: "Updated Book Title"
+    imageFile:
+        type: string
+        format: binary
+        description: Thumbnail of the book
+    "additional_images[]":
+        type: array
+        items:
+            type: string
+            format: binary
+        description: Additional images of the book (4 images)
+        maxItems: 4
+    author:
+        type: string
+        description: Comma-separated list of author IDs associated with the book
+        example: "1,2,3"
+    publisher:
+        type: integer
+        description: Publisher ID associated with the book (1 publisher only)
+        example: 1
+    category:
+        type: string
+        description: Comma-separated list of category IDs associated with the book
+        example: "1,2,3"
+    published_year:
+        type: integer
+        description: Year the book was published
+        example: 2023
+    stock_quantity:
+        type: integer
+        description: Stock quantity of the book
+        example: 10
+    page:
+        type: integer
+        description: Number of pages in the book
+        example: 200
+    short_description:
+        type: string
+        description: Short description of the book
+        example: "An updated brief summary of the book"
+    description:
+        type: string
+        description: Detailed description of the book
+        example: "An updated detailed summary of the book"
+required:
+    - title
+    - author
+    - publisher
+    - category
+    - published_year
+    - stock_quantity
+    - page
+    - short_description
+    - description

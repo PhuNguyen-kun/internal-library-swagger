@@ -1,0 +1,21 @@
+description: Not found
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Not Found"
+        errors:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example:
+            null
+      required:
+        - message
+        - errors

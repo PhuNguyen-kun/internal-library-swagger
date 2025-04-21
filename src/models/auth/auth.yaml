@@ -1,0 +1,38 @@
+type: object
+properties:
+  access_token:
+    type: string
+    description: access token
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  token_type:
+    type: string
+    description: type of token
+    example: "bearer"
+  expires_in:
+    type: integer
+    description: expires
+    example: 3600
+  profile:
+    type: object
+    description: admin profile
+    properties:
+      full_name:
+        type: string
+        description: admin full name
+        example: "John Doe"
+      email:
+        type: string
+        description: admin email
+        example: admin@kiaisoft.com
+      role:
+        type: integer
+        description: admin role
+        example: 0
+    required:
+      - name
+      - email
+required:
+  - access_token
+  - token_type
+  - expires_in
+  - profile

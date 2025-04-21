@@ -1,0 +1,92 @@
+type: object
+properties:
+    id:
+        type: integer
+        description: User ID
+        example: 1
+    email:
+        type: string
+        description: User email
+        example: "admin@kiaisoft.com"
+    full_name:
+        type: string
+        description: Full name of the user
+        example: "Nguyễn Văn A"
+    phone_number:
+        type: string
+        description: Phone number of the user
+        example: "0123456789"
+    gender:
+        type: integer
+        description: Gender (0 for male, 1 for female)
+        example: 0
+    birth_date:
+        type: string
+        format: date
+        description: Birth date of the user
+        example: "2004-04-03"
+    employee_id:
+        type: integer
+        description: Employee ID
+        example: 1
+    province_id:
+        type: integer
+        description: Province ID
+        example: 1
+    district_id:
+        type: integer
+        description: District ID
+        example: 981
+    ward_id:
+        type: integer
+        description: Ward ID
+        example: 32348
+    address:
+        type: string
+        description: Address of the user
+        example: "123 Đường ABC"
+    google_id:
+        type: string
+        description: Google ID of the user
+        example: "d8eaa66f-a0f7-3480-83a1-e9581281d1e3"
+    role:
+        type: integer
+        description: Role of the user (e.g., 0 for admin)
+        example: 0
+    status:
+        type: integer
+        description: Status of the user (e.g., 1 for active)
+        example: 1
+    created_at:
+        type: string
+        format: date-time
+        description: Timestamp when the user was created
+        example: "2024-12-30T01:24:57.000000Z"
+    updated_at:
+        type: string
+        format: date-time
+        description: Timestamp when the user was last updated
+        example: "2025-04-03T22:15:09.000000Z"
+    deleted_at:
+        type: string
+        format: date-time
+        description: Timestamp when the user was deleted (nullable)
+        nullable: true
+        example: null
+required:
+    - id
+    - email
+    - full_name
+    - phone_number
+    - gender
+    - birth_date
+    - employee_id
+    - province_id
+    - district_id
+    - ward_id
+    - address
+    - google_id
+    - role
+    - status
+    - created_at
+    - updated_at

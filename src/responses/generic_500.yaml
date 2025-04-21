@@ -1,0 +1,22 @@
+description: Internal Server Error
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Internal Server Error message
+          example: 'Internal Server Error'
+        errors:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example:
+            null
+      required:
+        - message
+        - errors

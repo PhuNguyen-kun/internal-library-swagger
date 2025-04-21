@@ -1,0 +1,44 @@
+put:
+    tags:
+        - admin
+    summary: Update a review
+    description: Update a review by ID (0 Pending, 1 Approved, 2 Rejected)
+    operationId: adminUpdateReview
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: review_id
+          in: path
+          required: true
+          description: The ID of the review to update
+          schema:
+              type: integer
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    $ref: "../../requests/admin/put_review_request.yaml"
+    responses:
+        "200":
+            description: Update review success
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                description: response success
+                                example: "成功しました。"
+                            data:
+                                $ref: "../../models/admin/review.yaml"
+                        required:
+                            - success
+                            - data
+        "500":
+            $ref: "../../responses/generic_500.yaml"
+        "422":
+            $ref: "../../responses/generic_422.yaml"
+        "404":
+            $ref: "../../responses/generic_404.yaml"

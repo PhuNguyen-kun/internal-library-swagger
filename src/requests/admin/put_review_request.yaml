@@ -1,0 +1,6 @@
+type: object
+properties:
+    status:
+        type: string
+        description: Status of review (0 Pending 1 Approved 2 Rejected)
+        example: 0

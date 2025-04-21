@@ -1,0 +1,127 @@
+get:
+  tags:
+    - admin
+  summary: Retrieve a list of works
+  operationId: adminWorks
+  security:
+    - bearerAuth: [ ]
+  parameters:
+    - name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        example: 1
+    - name: per_page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        example: 10
+    - name: sort_by
+      in: query
+      required: false
+      schema:
+        type: string
+        example: "name"
+    - name: sort_order
+      in: query
+      required: false
+      schema:
+        $ref: '../../enums/sort_order.yaml'
+    - name: department
+      in: query
+      required: false
+      schema:
+        $ref: '../../enums/department.yaml'
+    - name: code_start
+      in: query
+      required: false
+      schema:
+        type: string
+        example: "A10000"
+    - name: code_end
+      in: query
+      required: false
+      schema:
+        type: string
+        example: "A20000"
+    - name: name
+      in: query
+      required: false
+      schema:
+        type: string
+        maxLength: 255
+        example: "John Doe"
+    - name: email
+      in: query
+      required: false
+      schema:
+        type: string
+        maxLength: 255
+        example: "example@example.com"
+    - name: free_word
+      in: query
+      required: false
+      schema:
+        type: string
+        maxLength: 255
+        example: "free word"
+    - name: status[]
+      in: query
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '../../enums/work_status.yaml'
+    - name: rating[]
+      in: query
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '../../enums/work_rating.yaml'
+    - name: like[]
+      in: query
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '../../enums/work_like.yaml'
+
+  responses:
+    200:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: response success message
+                example: '成功し ました。'
+              data:
+                type: array
+                items:
+                  $ref: '../../models/admin/work.yaml'
+              pagination:
+                $ref: '../../responses/pagination.yaml'
+            required:
+              - message
+              - data
+              - pagination
+    500:
+      $ref: '../../responses/generic_500.yaml'
+    422:
+      $ref: '../../responses/generic_422.yaml'
+    401:
+      $ref: '../../responses/generic_401.yaml'

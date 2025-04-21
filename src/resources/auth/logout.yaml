@@ -1,0 +1,27 @@
+post:
+  tags:
+    - auth
+  summary: Logout
+  description: Logout
+  security:
+    - bearerAuth: []
+  operationId: logout
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              msg:
+                type: string
+                example: "success"
+              data:
+                type: object
+                nullable: true
+                example: null
+    '500':
+      $ref: '../../responses/generic_500.yaml'
+    '401':
+      $ref: '../../responses/generic_401.yaml'

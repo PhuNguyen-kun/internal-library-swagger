@@ -1,0 +1,11 @@
+description: Unauthorized - Token not provided
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Token not provided"
+      required:
+        - message

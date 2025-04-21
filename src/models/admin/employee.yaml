@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: ID of the employee
+    example: 1
+  full_name:
+    type: string
+    description: Full name of the employee
+    example: "Nguyễn Văn Nam"
+  email:
+    type: string
+    description: Email of the employee
+    example: "nam.nguyen@kiaisoft.com"
+  employee_code:
+    type: string
+    description: Employee code of the employee
+    example: "K0001"

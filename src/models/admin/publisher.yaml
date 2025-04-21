@@ -1,0 +1,14 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: ID of the publisher
+    example: 1
+  name:
+    type: string
+    description: Name of the publisher
+    example: "Nhà xuất bản Kim Đồng"
+  description:
+    type: string
+    description: Description of the publisher
+    example: "Nhà xuất bản Kim Đồng là một nhà xuất bản nổi tiếng của Việt Nam"

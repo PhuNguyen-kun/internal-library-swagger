@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: ID of the author
+    example: 1
+  name:
+    type: string
+    description: Name of the author
+    example: "Nguyễn Nhật Ánh"
+  slug:
+    type: string
+    description: Slug of the author
+    example: "nguyen-nhat-anh"
+  description:
+    type: string
+    description: Description of the author
+    example: "Nguyễn Nhật Ánh là một nhà văn nổi tiếng của Việt Nam"
