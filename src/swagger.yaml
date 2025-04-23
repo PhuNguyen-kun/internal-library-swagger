@@ -116,3 +116,9 @@ paths:
         $ref: "./resources/user/wishlist.yaml"
     /user/wishlist/{bookId}:
         $ref: "./resources/user/wishlist_item.yaml"
+    /user/location/provinces:
+        $ref: "./resources/user/locations.yaml#/provinces"
+    /user/location/districts:
+        $ref: "./resources/user/locations.yaml#/districts"
+    /user/location/wards:
+        $ref: "./resources/user/locations.yaml#/wards"
