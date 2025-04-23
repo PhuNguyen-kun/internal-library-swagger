@@ -86,8 +86,6 @@ paths:
         $ref: "./resources/admin/books.yaml"
     /admin/books/{book_id}:
         $ref: "./resources/admin/book.yaml"
-    /admin/books/{book_id}/restore:
-        $ref: "./resources/admin/book-restore.yaml"
     /admin/reviews:
         $ref: "./resources/admin/reviews.yaml"
     /admin/reviews/{review_id}:
