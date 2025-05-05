@@ -6,7 +6,7 @@ delete:
     security:
         - bearerAuth: []
     parameters:
-        - name: cart_id
+        - name: cart_item_id
           in: path
           required: true
           description: ID of the cart item to remove

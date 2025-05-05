@@ -46,7 +46,7 @@ get:
         "500":
             $ref: "../../responses/generic_500.yaml"
 
-put:
+post:
     tags:
         - admin
     summary: Update Book
