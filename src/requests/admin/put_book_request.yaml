@@ -16,7 +16,7 @@ properties:
         description: Additional images of the book (4 images)
         maxItems: 4
     author:
-        type: string
+        type: array
         description: List of author IDs associated with the book
         example: [1, 2, 3]
     publisher:
@@ -24,7 +24,7 @@ properties:
         description: Publisher ID associated with the book (1 publisher only)
         example: 1
     category:
-        type: string
+        type: array
         description: List of category IDs associated with the book
         example: [1, 2, 3]
     published_year:
