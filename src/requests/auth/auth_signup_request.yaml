@@ -1,0 +1,18 @@
+type: object
+properties:
+  full_name:
+    type: string
+    description: Full name
+    example: Example
+  email:
+    type: string
+    description: Email
+    example: example@kiaisoft.com
+  password:
+    type: string
+    description: Password
+    example: 12345678
+required:
+  - full_name
+  - email
+  - password

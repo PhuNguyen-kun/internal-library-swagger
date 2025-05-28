@@ -1,0 +1,122 @@
+openapi: 3.0.0
+servers:
+    - url: http://{localhost}/api
+      variables:
+          localhost:
+              default: 127.0.0.1:8080
+              description: Local
+    - url: https://{dev}/api
+      variables:
+          dev:
+              default: api.kiaidev.com
+              description: Server dev
+    - url: https://{stg}/api
+      variables:
+          stg:
+              default: api-stg.kiaidev.com
+              description: Server stg
+components:
+    securitySchemes:
+        bearerAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT
+info:
+    description: "API Document for Kiai Library"
+    version: 1.0.0
+    title: API Document for Kiai Library
+tags:
+    - name: auth
+      description: Auth API
+    - name: admin
+      description: Admin API
+    - name: user
+      description: User API
+paths:
+    #  Auth API
+    /auth/login:
+        $ref: "./resources/auth/login.yaml"
+    /auth/login-google:
+        $ref: "./resources/auth/login-google.yaml"
+    /auth/logout:
+        $ref: "./resources/auth/logout.yaml"
+    /auth/profile:
+        $ref: "./resources/auth/profile.yaml"
+    /auth/signup:
+        $ref: "./resources/auth/signup.yaml"
+    /auth/forgot-password:
+        $ref: "./resources/auth/forgot_password.yaml"
+    /auth/reset-password:
+        $ref: "./resources/auth/reset_password.yaml"
+
+    #  Admin API
+    /admin/dashboard/top-borrowers:
+        $ref: "./resources/admin/dashboard.yaml#/top-borrowers"
+    /admin/dashboard/top-borrowed-books:
+        $ref: "./resources/admin/dashboard.yaml#/top-borrowed-books"
+    /admin/dashboard/borrowed-books-by-month:
+        $ref: "./resources/admin/dashboard.yaml#/borrowed-books-by-month"
+    /admin/dashboard/books-by-category:
+        $ref: "./resources/admin/dashboard.yaml#/books-by-category"
+    /admin/dashboard/most-favorite-books:
+        $ref: "./resources/admin/dashboard.yaml#/most-favorite-books"
+    /admin/categories:
+        $ref: "./resources/admin/categories.yaml"
+    /admin/categories/{category_id}:
+        $ref: "./resources/admin/category.yaml"
+    /admin/authors:
+        $ref: "./resources/admin/authors.yaml"
+    /admin/authors/{author_id}:
+        $ref: "./resources/admin/author.yaml"
+    /admin/publishers:
+        $ref: "./resources/admin/publishers.yaml"
+    /admin/publishers/{publisher_id}:
+        $ref: "./resources/admin/publisher.yaml"
+    /admin/employees:
+        $ref: "./resources/admin/employees.yaml"
+    /admin/employees/{employee_id}:
+        $ref: "./resources/admin/employee.yaml"
+    /admin/employees/import:
+        $ref: "./resources/admin/import_employees.yaml"
+    /admin/users:
+        $ref: "./resources/admin/users.yaml"
+    /admin/users/{user_id}:
+        $ref: "./resources/admin/user.yaml"
+    /admin/books:
+        $ref: "./resources/admin/books.yaml"
+    /admin/books/{book_id}:
+        $ref: "./resources/admin/book.yaml"
+    /admin/reviews:
+        $ref: "./resources/admin/reviews.yaml"
+    /admin/reviews/{review_id}:
+        $ref: "./resources/admin/review.yaml"
+    /admin/orders:
+        $ref: "./resources/admin/orders.yaml"
+    /admin/orders/{order_id}:
+        $ref: "./resources/admin/order.yaml"
+    /admin/orders/history:
+        $ref: "./resources/admin/order_history.yaml"
+
+    #  User API
+    /user/books:
+        $ref: "./resources/user/books.yaml"
+    /user/books/{book_slug}/related-books:
+        $ref: "./resources/user/related_books.yaml"
+    /user/cart:
+        $ref: "./resources/user/carts.yaml"
+    /user/cart/{cart_item_id}:
+        $ref: "./resources/user/cart.yaml"
+    /user/info:
+        $ref: "./resources/user/info.yaml"
+    /user/info/password:
+        $ref: "./resources/user/update_password.yaml"
+    /user/wishlist:
+        $ref: "./resources/user/wishlist.yaml"
+    /user/wishlist/{bookId}:
+        $ref: "./resources/user/wishlist_item.yaml"
+    /user/location/provinces:
+        $ref: "./resources/user/locations.yaml#/provinces"
+    /user/location/districts:
+        $ref: "./resources/user/locations.yaml#/districts"
+    /user/location/wards:
+        $ref: "./resources/user/locations.yaml#/wards"

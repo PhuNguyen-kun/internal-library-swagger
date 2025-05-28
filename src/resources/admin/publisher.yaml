@@ -1,0 +1,83 @@
+put:
+    tags:
+        - admin
+    summary: Update a publisher
+    operationId: adminUpdatePublisher
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: publisher_id
+          in: path
+          required: true
+          schema:
+              type: integer
+          description: Publisher ID
+          example: 1
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    $ref: "../../requests/admin/put_publisher_request.yaml"
+    responses:
+        200:
+            description: Successful response
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                description: response success
+                                example: "成功しました。"
+                            data:
+                                $ref: "../../models/admin/publisher.yaml"
+                        required:
+                            - success
+                            - data
+        500:
+            $ref: "../../responses/generic_500.yaml"
+        422:
+            $ref: "../../responses/generic_422.yaml"
+
+delete:
+    tags:
+        - admin
+    summary: Delete a publisher
+    description: Delete a publisher by ID
+    operationId: deletePublisher
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: publisher_id
+          in: path
+          required: true
+          description: The ID of the publisher to delete
+          schema:
+              type: integer
+    responses:
+        "200":
+            description: Delete Publisher success
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                description: response success
+                                example: "成功しました。"
+                            data:
+                                type: string
+                                description: response success
+                                example: "Author deleted successfully"
+                        required:
+                            - success
+                            - data
+        "500":
+            $ref: "../../responses/generic_500.yaml"
+        "422":
+            $ref: "../../responses/generic_422.yaml"
+        "404":
+            $ref: "../../responses/generic_404.yaml"

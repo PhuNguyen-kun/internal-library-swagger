@@ -1,0 +1,203 @@
+get:
+    tags:
+        - admin
+    summary: Get list of orders
+    operationId: getOrders
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: per_page
+          in: query
+          required: false
+          schema:
+              type: integer
+              minimum: 1
+              maximum: 100
+              example: 10
+        - name: page
+          in: query
+          required: false
+          schema:
+              type: integer
+              minimum: 1
+              example: 1
+        - name: search_term
+          in: query
+          required: false
+          schema:
+              type: string
+              maxLength: 255
+        - name: status
+          in: query
+          required: false
+          schema:
+              type: string
+              example: 0, 1, 2, 3
+        - name: start_date
+          in: query
+          required: false
+          schema:
+              type: string
+              format: date
+              example: "2025-04-01"
+        - name: end_date
+          in: query
+          required: false
+          schema:
+              type: string
+              format: date
+              example: "2025-04-30"
+    responses:
+        "200":
+            description: Get Orders success
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                description: response success
+                                example: "成功しました。"
+                            data:
+                                type: array
+                                items:
+                                    $ref: "../../models/admin/order.yaml"
+                        required:
+                            - success
+                            - data
+        "500":
+            $ref: "../../responses/generic_500.yaml"
+        "422":
+            $ref: "../../responses/generic_422.yaml"
+
+post:
+    tags:
+        - user
+    summary: Checkout cart
+    description: Process the checkout for the user's cart
+    security:
+        - bearerAuth: []
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    type: object
+                    required:
+                        - full_name
+                        - email
+                        - province_id
+                        - district_id
+                        - ward_id
+                        - address
+                        - items
+                    properties:
+                        full_name:
+                            type: string
+                            description: User's full name
+                            example: "Nguyen Van A"
+                        email:
+                            type: string
+                            format: email
+                            description: User's email address
+                            example: "example@kiaisoft.com"
+                        phone_number:
+                            type: string
+                            description: User's phone number (optional, will use user's profile phone if not provided)
+                            example: "0901234567"
+                        province_id:
+                            type: integer
+                            description: ID of the province
+                            example: 35
+                        district_id:
+                            type: integer
+                            description: ID of the district
+                            example: 351
+                        ward_id:
+                            type: integer
+                            description: ID of the ward
+                            example: 13471
+                        address:
+                            type: string
+                            description: User's address
+                            example: "123 Main Street"
+                        items:
+                            type: array
+                            description: List of items to checkout
+                            items:
+                                type: object
+                                required:
+                                    - book_id
+                                    - quantity
+                                    - return_date_due
+                                properties:
+                                    book_id:
+                                        type: integer
+                                        description: ID of the book
+                                        example: 1
+                                    quantity:
+                                        type: integer
+                                        description: Quantity of the book
+                                        minimum: 1
+                                        example: 1
+                                    return_date_due:
+                                        type: string
+                                        format: date
+                                        description: Due date for returning the book
+                                        example: "2025-05-18"
+    responses:
+        200:
+            description: OK
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            status:
+                                type: string
+                                example: success
+                            code:
+                                type: integer
+                                example: 200
+                            data:
+                                type: string
+                                example: "Mượn thành công"
+        400:
+            description: Bad Request
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: Bad Request
+                            errors:
+                                type: object
+                                properties:
+                                    items:
+                                        type: array
+                                        items:
+                                            type: string
+                                            example: "Danh sách sản phẩm không được để trống"
+        401:
+            description: Unauthorized
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: Unauthorized
+        500:
+            description: Internal Server Error
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: Internal Server Error

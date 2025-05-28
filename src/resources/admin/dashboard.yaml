@@ -1,0 +1,289 @@
+top-borrowers:
+    get:
+        tags:
+            - admin
+        summary: Get top borrowers
+        description: Retrieves a list of top 10 users who have borrowed the most books
+        operationId: getTopBorrowers
+        security:
+            - bearerAuth: []
+        responses:
+            "200":
+                description: Successfully retrieved top borrowers
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                status:
+                                    type: string
+                                    example: success
+                                code:
+                                    type: integer
+                                    example: 200
+                                data:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            id:
+                                                type: integer
+                                                example: 1
+                                            full_name:
+                                                type: string
+                                                example: "John Doe"
+                                            email:
+                                                type: string
+                                                example: "john.doe@example.com"
+                                            orders_count:
+                                                type: integer
+                                                example: 15
+            "401":
+                description: Unauthorized - User is not authenticated
+            "403":
+                description: Forbidden - User does not have admin rights
+            "500":
+                description: Server error
+
+top-borrowed-books:
+    get:
+        tags:
+            - admin
+        summary: Get top borrowed books
+        description: Retrieves a list of top 10 most frequently borrowed books
+        operationId: getTopBorrowedBooks
+        security:
+            - bearerAuth: []
+        responses:
+            "200":
+                description: Successfully retrieved top borrowed books
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                status:
+                                    type: string
+                                    example: success
+                                code:
+                                    type: integer
+                                    example: 200
+                                data:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            id:
+                                                type: integer
+                                                example: 1
+                                            title:
+                                                type: string
+                                                example: "The Great Gatsby"
+                                            slug:
+                                                type: string
+                                                example: "the-great-gatsby"
+                                            author:
+                                                type: string
+                                                example: "F. Scott Fitzgerald"
+                                            image_url:
+                                                type: string
+                                                format: uri
+                                                example: "https://example.com/images/great-gatsby.jpg"
+                                            publisher:
+                                                type: object
+                                                properties:
+                                                    id:
+                                                        type: integer
+                                                        example: 1
+                                                    name:
+                                                        type: string
+                                                        example: "Simon & Schuster"
+                                            categories:
+                                                type: array
+                                                items:
+                                                    type: object
+                                                    properties:
+                                                        id:
+                                                            type: integer
+                                                            example: 1
+                                                        name:
+                                                            type: string
+                                                            example: "Fiction"
+                                            order_details_count:
+                                                type: integer
+                                                example: 42
+            "401":
+                description: Unauthorized - User is not authenticated
+            "403":
+                description: Forbidden - User does not have admin rights
+            "500":
+                description: Server error
+
+borrowed-books-by-month:
+    get:
+        tags:
+            - admin
+        summary: Get borrowed books by month
+        description: Retrieves statistics on book borrowing over the past 12 months
+        operationId: getBorrowedBooksByMonth
+        security:
+            - bearerAuth: []
+        responses:
+            "200":
+                description: Successfully retrieved borrowed books by month
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                status:
+                                    type: string
+                                    example: success
+                                code:
+                                    type: integer
+                                    example: 200
+                                data:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            month_year:
+                                                type: string
+                                                example: "Mar 2025"
+                                            count:
+                                                type: integer
+                                                example: 37
+            "401":
+                description: Unauthorized - User is not authenticated
+            "403":
+                description: Forbidden - User does not have admin rights
+            "500":
+                description: Server error
+
+books-by-category:
+    get:
+        tags:
+            - admin
+        summary: Get books by category
+        description: Retrieves statistics on books grouped by category
+        operationId: getBooksByCategory
+        security:
+            - bearerAuth: []
+        responses:
+            "200":
+                description: Successfully retrieved books by category
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                status:
+                                    type: string
+                                    example: success
+                                code:
+                                    type: integer
+                                    example: 200
+                                data:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            id:
+                                                type: integer
+                                                example: 1
+                                            name:
+                                                type: string
+                                                example: "Fiction"
+                                            slug:
+                                                type: string
+                                                example: "fiction"
+                                            book_count:
+                                                type: integer
+                                                example: 152
+            "401":
+                description: Unauthorized - User is not authenticated
+            "403":
+                description: Forbidden - User does not have admin rights
+            "500":
+                description: Server error
+
+most-favorite-books:
+    get:
+        tags:
+            - admin
+        summary: Get most favorite books
+        description: Retrieves a list of books that have been added to wishlists most frequently
+        operationId: getMostFavoriteBooks
+        security:
+            - bearerAuth: []
+        responses:
+            "200":
+                description: Successfully retrieved most favorite books
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                status:
+                                    type: string
+                                    example: success
+                                code:
+                                    type: integer
+                                    example: 200
+                                data:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            id:
+                                                type: integer
+                                                example: 1
+                                            title:
+                                                type: string
+                                                example: "To Kill a Mockingbird"
+                                            slug:
+                                                type: string
+                                                example: "to-kill-a-mockingbird"
+                                            author:
+                                                type: string
+                                                example: "Harper Lee"
+                                            image_url:
+                                                type: string
+                                                format: uri
+                                                example: "https://example.com/images/to-kill-a-mockingbird.jpg"
+                                            publisher:
+                                                type: object
+                                                properties:
+                                                    id:
+                                                        type: integer
+                                                        example: 3
+                                                    name:
+                                                        type: string
+                                                        example: "HarperCollins"
+                                            categories:
+                                                type: array
+                                                items:
+                                                    type: object
+                                                    properties:
+                                                        id:
+                                                            type: integer
+                                                            example: 1
+                                                        name:
+                                                            type: string
+                                                            example: "Classic Literature"
+                                            favorite_count:
+                                                type: integer
+                                                example: 89
+                                            reviews_avg_star:
+                                                type: number
+                                                format: float
+                                                example: 4.8
+                                            reviews_count:
+                                                type: integer
+                                                example: 56
+            "401":
+                description: Unauthorized - User is not authenticated
+            "403":
+                description: Forbidden - User does not have admin rights
+            "500":
+                description: Server error

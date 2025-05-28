@@ -1,0 +1,6 @@
+type: object
+properties:
+    status:
+        type: string
+        description: Status of user (0 Inactive 1 Active)
+        example: 0

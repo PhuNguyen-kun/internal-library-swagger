@@ -1,0 +1,120 @@
+get:
+    tags:
+        - user
+    summary: Get user's wishlist
+    description: Retrieves all books in the current user's wishlist
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: per_page
+          in: query
+          required: false
+          schema:
+              type: integer
+              minimum: 1
+              maximum: 100
+              example: 12
+        - name: page
+          in: query
+          required: false
+          schema:
+              type: integer
+              minimum: 1
+              example: 1
+        - name: search_term
+          in: query
+          required: false
+          schema:
+              type: string
+              maxLength: 255
+    responses:
+        "200":
+            description: Successfully retrieved user's wishlist
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            status:
+                                type: string
+                                example: success
+                            code:
+                                type: integer
+                                example: 200
+                            data:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        id:
+                                            type: integer
+                                            example: 1
+                                        full_name:
+                                            type: string
+                                            example: "John Doe"
+                                        book:
+                                            type: object
+                                            properties:
+                                                id:
+                                                    type: integer
+                                                    example: 5
+                                                title:
+                                                    type: string
+                                                    example: "To Kill a Mockingbird"
+                                                slug:
+                                                    type: string
+                                                    example: "to-kill-a-mockingbird"
+                                                category:
+                                                    type: array
+                                                    items:
+                                                        type: string
+                                                        example: "Fiction"
+                                                image_url:
+                                                    type: string
+                                                    format: uri
+                                                    example: "https://example.com/images/to-kill-a-mockingbird.jpg"
+                                                favorite_count:
+                                                    type: integer
+                                                    example: 42
+                                                average_star:
+                                                    type: number
+                                                    format: float
+                                                    example: 4.5
+                                                review_count:
+                                                    type: integer
+                                                    example: 125
+                            pagination:
+                                type: object
+                                properties:
+                                    total:
+                                        type: integer
+                                        example: 30
+                                    total_pages:
+                                        type: integer
+                                        example: 3
+                                    current_page:
+                                        type: integer
+                                        example: 1
+                                    per_page:
+                                        type: integer
+                                        example: 12
+        "401":
+            description: Unauthorized - User is not authenticated
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Unauthorized"
+        "500":
+            description: Server error
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Internal Server Error"

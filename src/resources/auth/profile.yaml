@@ -1,0 +1,25 @@
+get:
+  tags:
+    - auth
+  summary: Profile
+  description: Get Profile
+  security:
+    - bearerAuth: []
+  operationId: profile
+  responses:
+    '200':
+      description: Success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "success"
+              data:
+                $ref: '../../models/auth/profile.yaml'
+    '500':
+      $ref: '../../responses/generic_500.yaml'
+    '401':
+      $ref: '../../responses/generic_401.yaml'

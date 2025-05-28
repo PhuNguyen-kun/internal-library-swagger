@@ -1,0 +1,32 @@
+post:
+  tags:
+    - auth
+  summary: Signup
+  operationId: signup
+  requestBody:
+      required: true
+      content:
+        application/json:
+            schema:
+              $ref: '../../requests/auth/auth_signup_request.yaml'
+  responses:
+    '200':
+      description: Signup success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: response success
+                example: 'success'
+              data:
+                $ref: '../../models/auth/auth.yaml'
+            required:
+              - success
+              - data
+    '500':
+      $ref: '../../responses/generic_500.yaml'
+    '422':
+      $ref: '../../responses/generic_422.yaml'

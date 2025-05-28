@@ -1,0 +1,82 @@
+put:
+  tags:
+    - admin
+  summary: Update a category
+  operationId: adminUpdateCategory
+  security:
+    - bearerAuth: [ ]
+  parameters:
+    - name: category_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Category ID
+      example: 1
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requests/admin/put_category_request.yaml'
+  responses:
+    200:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: response success
+                example: 'success'
+              data:
+                $ref: '../../models/admin/category.yaml'
+            required:
+              - success
+              - data
+    500:
+      $ref: '../../responses/generic_500.yaml'
+    422:
+      $ref: '../../responses/generic_422.yaml'
+delete:
+  tags:
+    - admin
+  summary: Delete a category
+  description: Delete a category by ID
+  operationId: deleteCategory
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: category_id
+      in: path
+      required: true
+      description: The ID of the category to delete
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Category deleted successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: response success
+                example: '成功しました。'
+              data:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: response success
+                    example: 'Category deleted successfully.'
+    '500':
+      $ref: '../../responses/generic_500.yaml'
+    '422':
+      $ref: '../../responses/generic_422.yaml'
+    '404':
+      $ref: '../../responses/generic_404.yaml'

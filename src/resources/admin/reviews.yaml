@@ -1,0 +1,121 @@
+get:
+    tags:
+        - admin
+    summary: Get Reviews
+    description: Get Reviews
+    operationId: getReviews
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: per_page
+          in: query
+          required: false
+          schema:
+              type: integer
+              minimum: 1
+              maximum: 100
+              example: 10
+        - name: page
+          in: query
+          required: false
+          schema:
+              type: integer
+              minimum: 1
+              example: 1
+        - name: search_term
+          in: query
+          required: false
+          schema:
+              type: string
+              maxLength: 255
+        - name: stars
+          in: query
+          required: false
+          schema:
+              type: string
+              example: 1, 2, 3, 4, 5
+        - name: status
+          in: query
+          required: false
+          schema:
+              type: string
+              example: 0, 1, 2
+    responses:
+        "200":
+            description: Get Reviews success
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                description: response success
+                                example: "成功しました。"
+                            data:
+                                type: array
+                                items:
+                                    $ref: "../../models/admin/review.yaml"
+                        required:
+                            - success
+                            - data
+        "500":
+            $ref: "../../responses/generic_500.yaml"
+        "422":
+            $ref: "../../responses/generic_422.yaml"
+
+post:
+    tags:
+        - user
+    summary: Create a new review
+    description: Submit a new review for a book
+    operationId: createBookReview
+    security:
+        - bearerAuth: []
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    type: object
+                    properties:
+                        book_id:
+                            type: integer
+                            description: ID of the book being reviewed
+                            example: 1
+                        star:
+                            type: integer
+                            minimum: 1
+                            maximum: 5
+                            description: Rating from 1 to 5 stars
+                            example: 5
+                        comment:
+                            type: string
+                            description: Review comment
+                            example: "This book was amazing! I couldn't put it down."
+                    required:
+                        - star
+                        - comment
+    responses:
+        "201":
+            description: Review created successfully
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                description: Response message
+                                example: "Cảm ơn bạn đã đánh giá! Đánh giá của bạn sẽ được hiển thị sau khi được duyệt."
+                            data:
+                                $ref: "../../models/admin/review.yaml"
+                        required:
+                            - message
+                            - data
+        "401":
+            $ref: "../../responses/generic_401.yaml"
+        "422":
+            $ref: "../../responses/generic_422.yaml"
+        "500":
+            $ref: "../../responses/generic_500.yaml"

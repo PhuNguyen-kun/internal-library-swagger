@@ -1,0 +1,13 @@
+type: object
+properties:
+  email:
+    type: string
+    description: email
+    example: admin@kiaisoft.com
+  password:
+    type: string
+    description: Admin Password
+    example: 12345678
+required:
+  - email
+  - password

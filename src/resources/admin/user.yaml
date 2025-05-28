@@ -1,0 +1,45 @@
+put:
+    tags:
+        - admin
+    summary: Update a user
+    description: Update a user by ID (0 Inactive 1 Active)
+    operationId: adminUpdateUser
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+              type: integer
+          description: User ID
+          example: 1
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    $ref: "../../requests/admin/put_user_request.yaml"
+    responses:
+        200:
+            description: Successful response
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                description: response success
+                                example: "成功しました。"
+                            data:
+                                $ref: "../../models/admin/user.yaml"
+                        required:
+                            - success
+                            - data
+        500:
+            $ref: "../../responses/generic_500.yaml"
+        422:
+            $ref: "../../responses/generic_422.yaml"
+        404:
+            $ref: "../../responses/generic_404.yaml"

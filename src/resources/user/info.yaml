@@ -1,0 +1,135 @@
+get:
+    tags:
+        - user
+    summary: Get user info
+    description: Retrieves the logged-in user's profile information
+    security:
+        - bearerAuth: []
+    responses:
+        "200":
+            description: Successfully retrieved user info
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            status:
+                                type: string
+                                example: success
+                            code:
+                                type: integer
+                                example: 200
+                            data:
+                                $ref: "../../models/auth/profile.yaml"
+        "401":
+            description: Unauthorized - User is not authenticated
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Unauthorized"
+        "500":
+            description: Server error
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Internal Server Error"
+
+put:
+    tags:
+        - user
+    summary: Update user info
+    description: Update the logged-in user's profile information
+    security:
+        - bearerAuth: []
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    type: object
+                    properties:
+                        full_name:
+                            type: string
+                            example: "Nguyễn Văn A"
+                        phone_number:
+                            type: string
+                            example: "0123456789"
+                        gender:
+                            type: integer
+                            description: "Gender (0 for male, 1 for female, 2 for other)"
+                            enum: [0, 1, 2]
+                            example: 0
+                        province_id:
+                            type: integer
+                            example: 1
+                        district_id:
+                            type: integer
+                            example: 981
+                        ward_id:
+                            type: integer
+                            example: 32348
+                        address:
+                            type: string
+                            example: "123 Street Name"
+    responses:
+        "200":
+            description: Successfully updated user info
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            status:
+                                type: string
+                                example: success
+                            code:
+                                type: integer
+                                example: 200
+                            data:
+                                $ref: "../../models/auth/profile.yaml"
+        "401":
+            description: Unauthorized - User is not authenticated
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Unauthorized"
+        "422":
+            description: Validation error
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "The given data was invalid."
+                            errors:
+                                type: object
+                                properties:
+                                    full_name:
+                                        type: array
+                                        items:
+                                            type: string
+                                            example: "The full name field is required."
+        "500":
+            description: Server error
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: "Internal Server Error"

@@ -1,0 +1,44 @@
+get:
+    tags:
+        - user
+    summary: Get Related Books
+    description: Get books related to a specific book identified by slug
+    operationId: getRelatedBooks
+    parameters:
+        - name: book_slug
+          in: path
+          required: true
+          schema:
+              type: string
+              example: "harry-potter-va-hon-da-phu-thuy"
+    responses:
+        "200":
+            description: Get Related Books success
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                description: response success
+                                example: "成功しました。"
+                            data:
+                                type: array
+                                items:
+                                    $ref: "../../models/admin/book.yaml"
+                        required:
+                            - message
+                            - data
+        "404":
+            description: Book not found
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            error:
+                                type: string
+                                example: "Không tìm thấy sách."
+        "500":
+            $ref: "../../responses/generic_500.yaml"

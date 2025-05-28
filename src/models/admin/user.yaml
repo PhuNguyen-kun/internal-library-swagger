@@ -1,0 +1,51 @@
+type: object
+properties:
+    id:
+        type: integer
+        description: ID of the user
+        example: 1
+    full_name:
+        type: string
+        description: Full name of the user
+        example: "Nguyễn Văn A"
+    gender:
+        type: string
+        description: Gender of the user
+        example: "Nam"
+    birth_date:
+        type: string
+        format: date
+        description: Birth date of the user
+        example: "1990-01-01"
+    email:
+        type: string
+        description: Email of the user
+        example: "example@kiaisoft.com"
+    phone_number:
+        type: string
+        description: Phone number of the user
+        example: "0123456789"
+    province_id:
+        type: integer
+        description: ID of the province
+        example: 1
+    district_id:
+        type: integer
+        description: ID of the district
+        example: 1
+    ward_id:
+        type: integer
+        description: ID of the ward
+        example: 1
+    address:
+        type: string
+        description: Address of the user
+        example: "123 Đường ABC, Phường XYZ, Quận 1, TP. HCM"
+    status:
+        type: string
+        description: Status of the user
+        example: "Active"
+    orders_count:
+        type: integer
+        description: Number of orders of the user
+        example: 10

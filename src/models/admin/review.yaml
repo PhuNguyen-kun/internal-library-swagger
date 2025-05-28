@@ -1,0 +1,29 @@
+type: object
+properties:
+    id:
+        type: integer
+        description: ID of the review
+        example: 1
+    book_id:
+        type: integer
+        description: ID of the book
+        example: 1
+    comment:
+        type: string
+        description: Comment of the review
+        example: "test"
+    status:
+        type: string
+        description: Status of the review (0 Pending 1 Approved 2 Rejected)
+        example: "Pending"
+    star:
+        type: integer
+        description: Star rating of the review (1 to 5)
+        example: 5
+    user:
+        $ref: "./user.yaml"
+    book:
+        $ref: "./book.yaml"
+    created_at:
+        type: string
+        format: date-time

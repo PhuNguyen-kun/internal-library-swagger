@@ -1,0 +1,113 @@
+post:
+    tags:
+        - auth
+    summary: Login with Google
+    description: Authenticate a user using Google OAuth token
+    operationId: loginGoogle
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    type: object
+                    properties:
+                        token:
+                            type: string
+                            description: Google OAuth token received from Google authentication
+                            example: "ya29.a0AWY-Ckgs..."
+                    required:
+                        - token
+    responses:
+        "200":
+            description: Login success
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            access_token:
+                                type: string
+                                description: JWT token for authentication
+                                example: "eyJ0eXAiOiJKV1QiLCJhbG..."
+                            user:
+                                type: object
+                                properties:
+                                    id:
+                                        type: integer
+                                        example: 1
+                                    full_name:
+                                        type: string
+                                        example: "Kiai User"
+                                    email:
+                                        type: string
+                                        example: "user@kiaisoft.com"
+                                    role:
+                                        type: integer
+                                        example: 1
+                                    status:
+                                        type: integer
+                                        example: 1
+                                    google_id:
+                                        type: string
+                                        example: "115366478524575123456"
+                                    created_at:
+                                        type: string
+                                        format: date-time
+                                        example: "2023-06-15T10:30:00.000000Z"
+                                    updated_at:
+                                        type: string
+                                        format: date-time
+                                        example: "2023-06-15T10:30:00.000000Z"
+        "400":
+            description: Bad Request
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            error:
+                                type: string
+                                example: "Google token is missing"
+        "401":
+            description: Unauthorized
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            error:
+                                type: string
+                                example: "Unable to retrieve user from Google"
+                            message:
+                                type: string
+                                example: "Authentication failed"
+        "422":
+            description: Unprocessable Entity
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            error:
+                                type: string
+                                example: "Bạn hãy đăng nhập bằng email công ty!"
+        "403":
+            description: Forbidden
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            error:
+                                type: string
+                                example: "Tài khoản đã bị chặn"
+        "500":
+            description: Internal Server Error
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            error:
+                                type: string
+                                example: "User creation failed, ID is missing"

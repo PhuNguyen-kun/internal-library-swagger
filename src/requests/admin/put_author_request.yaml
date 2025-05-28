@@ -1,0 +1,10 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Name of the author
+    example: "Example Author"
+  description:
+    type: string
+    description: Description of the author
+    example: "Example Author là một tác giả nổi tiếng của Việt Nam"

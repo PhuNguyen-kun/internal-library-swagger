@@ -1,0 +1,27 @@
+type: object
+properties:
+    id:
+        type: integer
+        description: ID of the publisher
+        example: 1
+    status:
+        type: string
+        description: Status of the publisher (0 Pending 1 Approved 2 Rejected)
+        example: "Pending"
+    created_at:
+        type: string
+        format: date
+        description: Created at date of the publisher
+        example: "2025-04-01"
+    full_name:
+        type: string
+        description: Full name of user
+        example: "Example User"
+    employee_code:
+        type: string
+        description: Employee code of user
+        example: "K0001"
+    details:
+        type: array
+        items:
+            $ref: "./order_detail.yaml"

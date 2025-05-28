@@ -1,0 +1,26 @@
+description: Internal Server Error
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          description: Internal Server Error Code
+          example: 422
+        message:
+          type: string
+          description: Internal Server Error message
+          example: 'Validation errors'
+        errors:
+          type: object
+          nullable: true
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          example:
+            null
+      required:
+        - message
+        - errors

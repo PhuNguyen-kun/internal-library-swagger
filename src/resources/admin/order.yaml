@@ -1,0 +1,78 @@
+put:
+    tags:
+        - admin
+    summary: Update order status
+    description: Update the status of an order and its items
+    operationId: updateOrder
+    security:
+        - bearerAuth: []
+    parameters:
+        - name: order_id
+          in: path
+          required: true
+          description: ID of the order to update
+          schema:
+              type: integer
+              example: 1
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    type: object
+                    required:
+                        - details
+                    properties:
+                        details:
+                            type: array
+                            description: List of order detail items to update
+                            items:
+                                type: object
+                                required:
+                                    - id
+                                    - status
+                                properties:
+                                    id:
+                                        type: integer
+                                        description: ID of the order detail
+                                        example: 1
+                                    status:
+                                        type: string
+                                        description: Status of the order detail (0 Borrowing, 1 Returned, 2 Overdue, 3 Lost)
+                                        example: "1"
+                                    return_date_real:
+                                        type: string
+                                        format: date
+                                        description: Real return date of the book (required when status is 1 - Returned)
+                                        example: "2025-05-01"
+                                        nullable: true
+    responses:
+        "200":
+            description: Order updated successfully
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            status:
+                                type: string
+                                example: success
+                            code:
+                                type: integer
+                                example: 200
+                            data:
+                                $ref: "../../models/admin/order.yaml"
+        "401":
+            description: Unauthorized
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: Unauthorized
+        "422":
+            $ref: "../../responses/generic_422.yaml"
+        "500":
+            $ref: "../../responses/generic_500.yaml"

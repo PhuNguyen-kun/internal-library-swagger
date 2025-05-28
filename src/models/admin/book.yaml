@@ -1,0 +1,84 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: ID of the book
+    example: 1
+  title:
+    type: string
+    description: Title of the book
+    example: "Nhà giả kim"
+  slug:
+    type: string
+    description: Slug of the book
+    example: "nha-gia-kim"
+  author:
+    type: array
+    items:
+      type: string
+      description: Author of the book
+      example: "Paulo Coelho"
+  category:
+    type: array
+    items:
+      type: string
+      description: Category of the book
+      example: "Tiểu thuyết"
+  publisher:
+    type: string
+    description: Publisher of the book
+    example: "Nhà xuất bản Kim Đồng"
+  publication_year:
+    type: integer
+    description: Publication year of the book
+    example: 1988
+  short_description:
+    type: string
+    description: Short description of the book
+    example: "Nhà giả kim là một cuốn tiểu thuyết của tác giả Paulo Coelho"
+  description:
+    type: string
+    description: Description of the book
+    example: "Nhà giả kim là một cuốn tiểu thuyết của tác giả Paulo Coelho, kể về hành trình của Santiago, một chàng trai chăn cừu người Tây Ban Nha, trong việc tìm kiếm kho báu và khám phá bản thân."
+  image_url:
+    type: string
+    description: Image URL of the book
+    example: "https://example.com/image.jpg"
+  additional_images:
+    type: array
+    items:
+      type: string
+      description: Additional images of the book
+      example: "https://example.com/image1.jpg"
+  order_details_count:
+    type: integer
+    description: Number of order details associated with the book
+    example: 10
+  favorite_count:
+    type: integer
+    description: Number of favorites associated with the book
+    example: 5
+  average_star:
+    type: number
+    format: float
+    description: Average star rating of the book
+    example: 4.5
+  star_distribution:
+    type: array
+    items:
+      type: integer
+      description: Star distribution of the book
+      example: 0
+  review_count:
+    type: integer
+    description: Number of reviews associated with the book
+    example: 20
+  deleted_at:
+    type: string
+    format: date-time
+    description: Date and time when the book was deleted
+    example: "2023-10-01T12:00:00Z"
+  availability_status:
+    type: string
+    description: Availability status of the book
+    example: "Còn hàng"

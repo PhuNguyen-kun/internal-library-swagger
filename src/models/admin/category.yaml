@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: ID of the category
+    example: 1
+  name:
+    type: string
+    description: Name of the category
+    example: "Tiểu thuyết"
+  slug:
+    type: string
+    description: Slug of the category
+    example: "tieu-thuyet"
+  description:
+    type: string
+    description: Description of the category
+    example: "Tiểu thuyết là một thể loại văn học"

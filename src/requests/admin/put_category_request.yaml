@@ -1,0 +1,10 @@
+type: object
+properties:
+  name:
+    type: string
+    description: Name of the category
+    example: "Tiểu thuyết"
+  description:
+    type: string
+    description: Description of the category
+    example: "Tiểu thuyết là một thể loại văn học"

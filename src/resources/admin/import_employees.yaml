@@ -1,0 +1,49 @@
+post:
+  tags:
+    - admin
+  summary: Import employees from CSV
+  description: Import employees from CSV
+  operationId: importEmployees
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            file:
+              type: string
+              format: binary
+              description: CSV file containing employee data
+  responses:
+    '200':
+      description: Import Employees success
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: response success
+                example: '成功しました。'
+              data:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: response success
+                    example: 'Employees imported successfully'
+                  employees:
+                    type: array
+                    items:
+                      $ref: '../../models/admin/employee.yaml'
+            required:
+              - success
+              - data
+    '500':
+      $ref: '../../responses/generic_500.yaml'
+    '422':
+      $ref: '../../responses/generic_422.yaml'

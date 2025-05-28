@@ -1,0 +1,193 @@
+provinces:
+    get:
+        tags:
+            - user
+        summary: Get all provinces
+        description: Returns a list of all provinces
+        operationId: getProvinces
+        responses:
+            200:
+                description: Successful operation
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                code:
+                                    type: integer
+                                    example: 200
+                                message:
+                                    type: string
+                                    example: "Success"
+                                data:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            id:
+                                                type: integer
+                                                example: 1
+                                            name:
+                                                type: string
+                                                example: "Hà Nội"
+            500:
+                description: Internal server error
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                code:
+                                    type: integer
+                                    example: 500
+                                message:
+                                    type: string
+                                    example: "Internal server error"
+        security:
+            - bearerAuth: []
+
+districts:
+    get:
+        tags:
+            - user
+        summary: Get districts by province ID
+        description: Returns a list of districts for a given province ID
+        operationId: getDistricts
+        parameters:
+            - name: provinceId
+              in: query
+              description: ID of the province to get districts for
+              required: true
+              schema:
+                  type: integer
+                  format: int64
+                  example: 1
+        responses:
+            200:
+                description: Successful operation
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                code:
+                                    type: integer
+                                    example: 200
+                                message:
+                                    type: string
+                                    example: "Success"
+                                data:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            id:
+                                                type: integer
+                                                example: 1
+                                            name:
+                                                type: string
+                                                example: "Quận Ba Đình"
+                                            province_id:
+                                                type: integer
+                                                example: 1
+            400:
+                description: Bad request
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                code:
+                                    type: integer
+                                    example: 400
+                                message:
+                                    type: string
+                                    example: "Thiếu provinceId"
+            500:
+                description: Internal server error
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                code:
+                                    type: integer
+                                    example: 500
+                                message:
+                                    type: string
+                                    example: "Internal server error"
+        security:
+            - bearerAuth: []
+
+wards:
+    get:
+        tags:
+            - user
+        summary: Get wards by district ID
+        description: Returns a list of wards for a given district ID
+        operationId: getWards
+        parameters:
+            - name: districtId
+              in: query
+              description: ID of the district to get wards for
+              required: true
+              schema:
+                  type: integer
+                  format: int64
+                  example: 974
+        responses:
+            200:
+                description: Successful operation
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                code:
+                                    type: integer
+                                    example: 200
+                                message:
+                                    type: string
+                                    example: "Success"
+                                data:
+                                    type: array
+                                    items:
+                                        type: object
+                                        properties:
+                                            id:
+                                                type: integer
+                                                example: 1
+                                            name:
+                                                type: string
+                                                example: "Phường Phúc Xá"
+                                            district_id:
+                                                type: integer
+                                                example: 1
+            400:
+                description: Bad request
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                code:
+                                    type: integer
+                                    example: 400
+                                message:
+                                    type: string
+                                    example: "Thiếu districtId"
+            500:
+                description: Internal server error
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                code:
+                                    type: integer
+                                    example: 500
+                                message:
+                                    type: string
+                                    example: "Internal server error"
+        security:
+            - bearerAuth: []

@@ -1,0 +1,119 @@
+post:
+    tags:
+        - user
+    summary: Checkout cart
+    description: Process the checkout for the user's cart
+    security:
+        - bearerAuth: []
+    requestBody:
+        required: true
+        content:
+            application/json:
+                schema:
+                    type: object
+                    required:
+                        - province_id
+                        - district_id
+                        - ward_id
+                        - address
+                        - items
+                    properties:
+                        phone_number:
+                            type: string
+                            description: User's phone number (optional, will use user's profile phone if not provided)
+                            example: "0901234567"
+                        province_id:
+                            type: integer
+                            description: ID of the province
+                            example: 1
+                        district_id:
+                            type: integer
+                            description: ID of the district
+                            example: 1
+                        ward_id:
+                            type: integer
+                            description: ID of the ward
+                            example: 1
+                        address:
+                            type: string
+                            description: User's address
+                            example: "123 Main Street"
+                        items:
+                            type: array
+                            description: List of items to checkout
+                            items:
+                                type: object
+                                required:
+                                    - book_id
+                                    - quantity
+                                    - return_date_due
+                                properties:
+                                    book_id:
+                                        type: integer
+                                        description: ID of the book
+                                        example: 1
+                                    quantity:
+                                        type: integer
+                                        description: Quantity of the book
+                                        minimum: 1
+                                        example: 1
+                                    return_date_due:
+                                        type: string
+                                        format: date
+                                        description: Due date for returning the book
+                                        example: "2025-05-18"
+    responses:
+        200:
+            description: OK
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            status:
+                                type: string
+                                example: success
+                            code:
+                                type: integer
+                                example: 200
+                            data:
+                                type: string
+                                example: "Thanh toán thành công"
+        400:
+            description: Bad Request
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: Bad Request
+                            errors:
+                                type: object
+                                properties:
+                                    items:
+                                        type: array
+                                        items:
+                                            type: string
+                                            example: "Danh sách sản phẩm không được để trống"
+        401:
+            description: Unauthorized
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: Unauthorized
+        500:
+            description: Internal Server Error
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            message:
+                                type: string
+                                example: Internal Server Error

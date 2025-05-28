@@ -1,0 +1,83 @@
+put:
+  tags:
+    - admin
+  summary: Update an author
+  operationId: adminUpdateAuthor
+  security:
+      - bearerAuth: []
+  parameters:
+    - name: author_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Author ID
+      example: 1
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requests/admin/put_author_request.yaml'
+  responses:
+    200:
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: response success
+                example: '成功しました。'
+              data:
+                $ref: '../../models/admin/author.yaml'
+            required:
+              - success
+              - data
+    500:
+      $ref: '../../responses/generic_500.yaml'
+    422:
+      $ref: '../../responses/generic_422.yaml'
+
+delete:
+  tags:
+    - admin
+  summary: Delete an author
+  description: Delete an author by ID
+  operationId: deleteAuthor
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: author_id
+      in: path
+      required: true
+      description: The ID of the author to delete
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: Author deleted successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                description: response success
+                example: '成功しました。'
+              data:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: response success
+                    example: 'Author deleted successfully.'
+    '500':
+      $ref: '../../responses/generic_500.yaml'
+    '422':
+      $ref: '../../responses/generic_422.yaml'
+    '404':
+      $ref: '../../responses/generic_404.yaml'
